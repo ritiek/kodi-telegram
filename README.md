@@ -10,7 +10,7 @@ cd kodi-telegram
 pip install -r requirements.txt
 ```
 
-- Edit (kodi_bot.py)[kodi_bot.py] to whatever IP address or Port your Kodi webserver is running on.
+- Edit [kodi_bot.py](kodi_bot.py) to whatever IP address or Port your Kodi webserver is running on.
 
 - For security purposes, you should also note down your telegram `chat_id` and restrict access only to it by editing the script accordingly.
 
