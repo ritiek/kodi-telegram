@@ -14,23 +14,28 @@ def handle(msg):
     print('')
     print(time.strftime('[%d %b, %y %r] ' + str(chat_id) + ': ' + command))
 
-	command = command.replace(' --force', '')
-	bot.sendChatAction(chat_id, 'typing')
+    command = command.replace(' --force', '')
+    bot.sendChatAction(chat_id, 'typing')
 
-	if command == '/start':
-		bot.sendMessage(chat_id, 'Starting Kodi')
-		os.system('kodi &')
-	elif command == '/stop':
-		bot.sendMessage(chat_id, 'Sending kill signal')
-		os.system('pkill -f kodi')
-	else:
-		data = '[{"jsonrpc":"2.0","method":"Input.SendText","params":["' + command + '"],"id":10}]'
-		requests.post('http://{0}:{1}/jsonrpc?Input.SendText'.format(HOST, PORT), data=data)
-		bot.sendMessage(chat_id, 'Text sent')
+    if command.startswith('/start'):
+        bot.sendMessage(chat_id, 'Starting Kodi')
+        os.system('kodi &')
+    elif command.startswith('/stop'):
+        bot.sendMessage(chat_id, 'Sending kill signal')
+        os.system('pkill -f kodi')
+    elif command.startswith('/url'):
+        command = command.split(' ')[1:]
+        data = '{"id":529,"jsonrpc":"2.0","method":"Player.Open","params":{"item":{"file":"' + ''.join(command) + '"}}}'
+        requests.post('http://{0}:{1}/jsonrpc'.format(HOST, PORT), data=data)
+        bot.sendMessage(chat_id, 'Playing url')
+    else:
+        data = '[{"jsonrpc":"2.0","method":"Input.SendText","params":["' + command + '"],"id":10}]'
+        requests.post('http://{0}:{1}/jsonrpc?Input.SendText'.format(HOST, PORT), data=data)
+        bot.sendMessage(chat_id, 'Text sent')
 
 bot = telepot.Bot('I_NEED_TOKEN!')
 bot.message_loop(handle)
 print('I am listening ...')
 
 while True:
-    time.sleep(10)
+time.sleep(10)
