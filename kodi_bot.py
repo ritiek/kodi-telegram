@@ -18,11 +18,9 @@ def handle(msg):
 	bot.sendChatAction(chat_id, 'typing')
 
 	if command == '/start':
-		bot.sendMessage(chat_id, 'Activated')
-	elif command == '/kodi start':
 		bot.sendMessage(chat_id, 'Starting Kodi')
 		os.system('kodi &')
-	elif command == '/kodi stop':
+	elif command == '/stop':
 		bot.sendMessage(chat_id, 'Sending kill signal')
 		os.system('pkill -f kodi')
 	else:
