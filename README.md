@@ -21,8 +21,8 @@ pip install -r requirements.txt
 Send the following commands to the bot preceeding `/` before them (example: `/start`).
 
 ```
-start - Start Kodi
-stop - Exit Kodi
+start - start Kodi
+stop - exit Kodi
 ```
 
 Anything that does not preceed with `/` will be sent as text to the webserver.
