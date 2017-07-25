@@ -18,14 +18,14 @@ pip install -r requirements.txt
 
 ## Available Commands
 
-Send the following commands to the bot preceeding `/` before them (example: `/kodi_start`).
+Send the following commands to the bot preceeding `/` before them (example: `/start`).
 
 ```
-kodi start
-kodi stop
+start - Start Kodi
+stop - Exit Kodi
 ```
 
-Anything that does not preceed with `/` will be treated as sent as text to the webserver.
+Anything that does not preceed with `/` will be sent as text to the webserver.
 
 ## License
 
